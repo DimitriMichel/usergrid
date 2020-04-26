@@ -1,25 +1,31 @@
+/*Imports*/
+@import url("https://fonts.googleapis.com/css2?family=Raleway:wght@400;500&display=swap");
 
 /*Globals*/
 body {
   padding: 0;
   margin: 0;
-  background: #B0CDEF;
+  background: white;
   min-height: 100vh;
   display: flex;
   justify-content: center;
   align-items: center;
   overflow: hidden;
-  font-family: "Helvetica Neue", sans-serif;
+  font-family: "Raleway", sans-serif;
 }
 
 * {
   box-sizing: border-box;
 }
-
+a {
+  text-decoration: none;
+  color: #46b7f0;
+}
 /*Classes*/
 .user {
   background-color: white;
   color: black;
+  border: #eeeeee 1px solid;
   font-size: 14px;
   border-radius: 20px;
   width: 610px;
@@ -32,13 +38,15 @@ body {
   justify-content: space-between;
   list-style: none;
   align-content: space-between;
+  overflow: hidden;
+  overflow-y: auto;
 }
 
 .user-item {
   border-radius: 20px;
   padding: 10px;
   cursor: pointer;
-  margin: 5px ;
+  margin: 5px;
   flex: 1 1 100px;
 }
 
@@ -70,24 +78,62 @@ body {
 
 .single-user {
   border-radius: 20px;
-  width: 300px;
-  height: 500px;
-  background-color: #eeeeee;
+  width: 270px;
+  height: 340px;
+  background-color: white;
   display: flex;
   flex-direction: column;
+  align-items: center;
   text-align: center;
+  position: relative;
+  border: #eeeeee 1px solid;
 }
 
-.user-images{
-  border-radius: 10px;
+.user-images {
+  border-radius: 50%;
   max-height: 100px;
   max-width: 100px;
   margin-bottom: 5px;
-
 }
 
 .user-tile-image {
-  border-radius: 10px 0 0 0;
+  border-radius: 50%;
   max-width: 128px;
+  margin-bottom: 5px;
+}
 
+.image-and-name-container {
+  position: absolute;
+  top: -30px;
+  color: black;
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+
+.user-details {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  text-overflow: ellipsis;
+  padding: 10px;
+}
+
+.user-name{
+  margin-top: 5px;
+  margin-bottom: 5px;
+  background-color: #eeeeee;
+  padding: 5px 10px 5px 10px ;
+  border-radius: 40px;
+}
+.detail {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  padding: 10px;
+  display: inline-block;
+}
+
+.detail:nth-child(1n) {
+  border-top: #eeeeee 1px solid;
 }

@@ -2,6 +2,7 @@ import React from "react";
 import { useState, useEffect } from "react";
 import { motion, AnimateSharedLayout, AnimatePresence } from "framer-motion";
 import "./App.css";
+import { TiLocation, TiMail, TiUser,  TiCalendar } from "react-icons/ti";
 
 const UserGrid = ({ users, setUserIndex }) => {
   const userList = users.map((user, index) => {
@@ -17,7 +18,7 @@ const UserGrid = ({ users, setUserIndex }) => {
           src={user.picture.large}
           alt={`${user.name.first}`}
         />
-        {user.name.first + " " + user.name.last}
+        {user.name.first}
       </motion.li>
     );
   });
@@ -32,8 +33,34 @@ const UserTile = ({ user, onClick, index }) => {
   return (
     <div className="single-user-container" onClick={onClick}>
       <motion.div layoutId={index} className="single-user">
-        <img className='user-tile-image' src={user.picture.large} alt={`${user.name.first}`} />
-        {user.name.first + " " + user.name.last}
+        <div className="image-and-name-container">
+          <img
+            className="user-tile-image"
+            src={user.picture.large}
+            alt={`${user.name.first}`}
+          /><div className="user-name">{user.name.first + " " + user.name.last}</div>
+
+          <div className="user-details">
+            <div className="detail">
+              <TiLocation />
+              {user.location.country}
+            </div>
+            <div className="detail">
+              <TiUser size={20}/>{" "}
+              {user.login.username}
+            </div>
+            <div className="detail">
+              <TiCalendar />{" "}
+              {`Joined: ${user.registered.age} years ago.`}
+            </div>
+            <div className="detail">
+              <TiMail />{" "}
+              <a href={`mailto:${user.email}?Subject=Hello,%20${user.name.first}`}>
+                Send Email
+              </a>
+            </div>
+          </div>
+        </div>
       </motion.div>
     </div>
   );
@@ -44,7 +71,7 @@ const App = () => {
   const [index, setUserIndex] = useState(false);
 
   useEffect(() => {
-    fetch(`https://randomuser.me/api/?results=16`)
+    fetch(`https://randomuser.me/api/?results=40`)
       .then(response => {
         return response.json();
       })
@@ -52,6 +79,7 @@ const App = () => {
         setUsers(data.results);
       });
   }, []);
+  console.log(users);
 
   return (
     <AnimateSharedLayout>
@@ -73,7 +101,7 @@ const App = () => {
             index={index}
             user={users[index]}
             setIndex={setUserIndex}
-            onClick={() => setUserIndex(false)}
+
           />
         )}
       </AnimatePresence>
