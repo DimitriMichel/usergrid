@@ -28,10 +28,13 @@ const UserGrid = ({ users, setUserIndex }) => {
   );
 };
 
-const UserTile = ({ users, onClick }) => {
+const UserTile = ({ user, onClick, index }) => {
   return (
     <div className="single-user-container" onClick={onClick}>
-      <motion.div></motion.div>
+      <motion.div layoutId={index} className="single-user">
+        <img className='user-tile-image' src={user.picture.large} alt={`${user.name.first}`} />
+        {user.name.first + " " + user.name.last}
+      </motion.div>
     </div>
   );
 };
@@ -49,20 +52,32 @@ const App = () => {
         setUsers(data.results);
       });
   }, []);
-  console.log(users);
-  console.log(users);
 
   return (
-    <div>
+    <AnimateSharedLayout>
       <UserGrid users={users} setUserIndex={setUserIndex} />
-      <UserTile
-        users={users}
-        index={index}
-        user={users[index]}
-        setIndex={setUserIndex}
-        onClick={() => setUserIndex(false)}
-      />
-    </div>
+      <AnimatePresence>
+        {index !== false && (
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 0.6 }}
+            exit={{ opacity: 0 }}
+            key="overlay"
+            className="overlay"
+            onClick={() => setUserIndex(false)}
+          />
+        )}
+        {index !== false && (
+          <UserTile
+            users={users}
+            index={index}
+            user={users[index]}
+            setIndex={setUserIndex}
+            onClick={() => setUserIndex(false)}
+          />
+        )}
+      </AnimatePresence>
+    </AnimateSharedLayout>
   );
 };
 

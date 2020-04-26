@@ -3,7 +3,7 @@
 body {
   padding: 0;
   margin: 0;
-  background: #eeeeee;
+  background: #B0CDEF;
   min-height: 100vh;
   display: flex;
   justify-content: center;
@@ -70,8 +70,12 @@ body {
 
 .single-user {
   border-radius: 20px;
-  width: 500px;
-  height: 300px;
+  width: 300px;
+  height: 500px;
+  background-color: #eeeeee;
+  display: flex;
+  flex-direction: column;
+  text-align: center;
 }
 
 .user-images{
@@ -79,5 +83,11 @@ body {
   max-height: 100px;
   max-width: 100px;
   margin-bottom: 5px;
+
+}
+
+.user-tile-image {
+  border-radius: 10px 0 0 0;
+  max-width: 128px;
 
 }
